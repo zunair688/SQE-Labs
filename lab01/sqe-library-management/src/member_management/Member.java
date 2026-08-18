@@ -31,6 +31,14 @@ public class Member {
         books.add(book);
     }
 
+    public void removeBook(Book book) {
+    if (book == null) {
+        throw new IllegalArgumentException("Book cannot be null");
+    }
+
+    books.remove(book);
+}
+
     public List<Book> getBooks() {
         return books;
     }
