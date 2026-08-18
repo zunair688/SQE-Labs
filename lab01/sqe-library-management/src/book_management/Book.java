@@ -6,10 +6,22 @@ public class Book {
     private String author;
 
     public Book(int id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
+    if (id <= 0) {
+        throw new IllegalArgumentException("Book ID must be positive");
     }
+
+    if (title == null || title.trim().isEmpty()) {
+        throw new IllegalArgumentException("Book title cannot be empty");
+    }
+
+    if (author == null || author.trim().isEmpty()) {
+        throw new IllegalArgumentException("Book author cannot be empty");
+    }
+
+    this.id = id;
+    this.title = title;
+    this.author = author;
+}
 
     public int getId() {
         return id;
