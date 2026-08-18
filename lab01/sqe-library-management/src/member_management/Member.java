@@ -15,6 +15,14 @@ public class Member {
         this.books = new ArrayList<>();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public void addBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("Book cannot be null");
@@ -22,14 +30,6 @@ public class Member {
 
         books.add(book);
     }
-
-    public int getId() {
-    return id;
-}
-
-public String getName() {
-    return name;
-}
 
     public List<Book> getBooks() {
         return books;
