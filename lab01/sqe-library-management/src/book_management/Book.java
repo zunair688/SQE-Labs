@@ -1,12 +1,12 @@
 package book_management;
 
 public class Book {
-    private int id;
+    private int accessionNumber;
     private String title;
     private String author;
 
-    public Book(int id, String title, String author) {
-    if (id <= 0) {
+    public Book(int accessionNumber, String title, String author) {
+    if (accessionNumber <= 0) {
         throw new IllegalArgumentException("Book ID must be positive");
     }
 
@@ -18,14 +18,14 @@ public class Book {
         throw new IllegalArgumentException("Book author cannot be empty");
     }
 
-    this.id = id;
+    this.accessionNumber = accessionNumber;
     this.title = title;
     this.author = author;
 }
 
-    public int getId() {
-        return id;
-    }
+    public int getAccessionNumber() {
+    return accessionNumber;
+}
 
     public String getTitle() {
         return title;
