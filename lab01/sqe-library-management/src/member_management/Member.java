@@ -7,12 +7,12 @@ import java.util.List;
 public class Member {
     private int id;
     private String name;
-    private List<Book> books;
+    private List<Book> borrowedBooks;
 
     public Member(int id, String name) {
         this.id = id;
         this.name = name;
-        this.books = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
     }
 
     public int getId() {
@@ -24,22 +24,27 @@ public class Member {
     }
 
     public void addBook(Book book) {
+        // Validate the book before modifying the member's collection.
         if (book == null) {
             throw new IllegalArgumentException("Book cannot be null");
         }
 
-        books.add(book);
+        if (borrowedBooks.contains(book)) {
+            throw new IllegalArgumentException("Book is already assigned to this member");
+        }
+
+        borrowedBooks.add(book);
     }
 
     public void removeBook(Book book) {
-    if (book == null) {
-        throw new IllegalArgumentException("Book cannot be null");
+        if (book == null) {
+            throw new IllegalArgumentException("Book cannot be null");
+        }
+
+        borrowedBooks.remove(book);
     }
 
-    books.remove(book);
-}
-
     public List<Book> getBooks() {
-        return books;
+        return borrowedBooks;
     }
 }
