@@ -7,7 +7,7 @@ public class Book {
 
     public Book(int bookId, String title, String author) {
     if (bookId <= 0) {
-        throw new IllegalArgumentException("Book ID must be positive");
+        throw new IllegalArgumentException("Book id must be positive");
     }
 
     if (title == null || title.trim().isEmpty()) {
@@ -23,6 +23,7 @@ public class Book {
     this.author = author;
 }
 
+  
     public int getBookId() {
     return bookId;
 }
