@@ -37,6 +37,16 @@ public class Member {
         return name;
     }
 
+    public boolean matchesName(String searchName) {
+    if (searchName == null) {
+        return false;
+    }
+
+    return name.equalsIgnoreCase(searchName.trim());
+}
+
+    
+
     public void addBook(Book book) {
     if (book == null) {
         throw new IllegalArgumentException("Book cannot be null");
