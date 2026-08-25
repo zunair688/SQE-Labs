@@ -38,18 +38,25 @@ public class Member {
     }
 
     public void addBook(Book book) {
-        if (book == null) {
-            throw new IllegalArgumentException("Book cannot be null");
-        }
-
-        if (borrowedBooks.contains(book)) {
-            throw new IllegalArgumentException(
-                "Book is already assigned to this member"
-            );
-        }
-
-        borrowedBooks.add(book);
+    if (book == null) {
+        throw new IllegalArgumentException("Book cannot be null");
     }
+
+    if (borrowedBooks.contains(book)) {
+        throw new IllegalArgumentException(
+            "Book is already assigned to this member"
+        );
+    }
+
+    // A student can borrow a maximum of 3 books.
+    if (borrowedBooks.size() >= 3) {
+        throw new IllegalArgumentException(
+            "Student cannot borrow more than 3 books"
+        );
+    }
+
+    borrowedBooks.add(book);
+}
 
     public void removeBook(Book book) {
         if (book == null) {
