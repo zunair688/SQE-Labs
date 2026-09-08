@@ -1,9 +1,16 @@
 import pytest
 from libraryhub.library import fine_tier
  
-@pytest.mark.parametrize('days,expected', [
-    (0, 'None'), (4, 'Low'), (10, 'Medium'), (20, 'High'), (45, 'Severe'),
-])
+@pytest.mark.parametrize(
+    'days,expected', 
+    [
+        (0, 'None'), 
+        (4, 'Low'), 
+        (10, 'Medium'), 
+        (20, 'High'), 
+        (45, 'Severe'),
+    ]
+)
 def test_fine_tier_valid_classes(days, expected):
     assert fine_tier(days) == expected
  
