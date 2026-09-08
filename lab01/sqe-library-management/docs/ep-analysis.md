@@ -218,3 +218,75 @@ Therefore, the maximum borrowing limit of 5 books is correctly enforced.
 
 The test suite confirms both the valid and invalid equivalence classes
 for the maximum number of books a member can borrow.
+
+
+Task 4 — ISBN Validation Tests
+Business Rule
+
+An ISBN must contain exactly 13 numeric digits.
+
+Therefore:
+
+Exactly 13 numeric digits = valid
+Empty input = invalid
+Fewer than 13 digits = invalid
+More than 13 digits = invalid
+Any letters or symbols = invalid
+Equivalence Classes Tested
+Test Case	Input	Expected Result
+TC-I1	9781234567890	True
+TC-I2	""	False
+TC-I3	978123456	False
+TC-I4	97812345678A0	False
+TC-I5	97812345678-0	False
+
+The test cases represent valid and invalid ISBN equivalence classes. The additional input containing a hyphen checks that symbols are rejected even when the input length is 13 characters.
+
+Test Implementation
+
+The ISBN validation tests were added in:
+
+tests/test_validate_isbn.py
+
+The tests use pytest.mark.parametrize to execute the same test function with multiple ISBN inputs and their expected results.
+
+The validation function checks that:
+
+The input is a string.
+The input contains exactly 13 characters.
+All characters are numeric digits.
+Test Execution
+
+The following command was used:
+
+python -m pytest tests/test_validate_isbn.py -v
+
+Actual Test Result
+================================================ test session starts =================================================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: E:\semester5th\SQE-Labs\lab01\sqe-library-management
+collected 5 items
+
+tests/test_validate_isbn.py::test_validate_isbn_classes[9781234567890-True] PASSED
+tests/test_validate_isbn.py::test_validate_isbn_classes[-False] PASSED
+tests/test_validate_isbn.py::test_validate_isbn_classes[978123456-False] PASSED
+tests/test_validate_isbn.py::test_validate_isbn_classes[97812345678A0-False] PASSED
+tests/test_validate_isbn.py::test_validate_isbn_classes[97812345678-0-False] PASSED
+
+================================================= 5 passed in 0.03s ==================================================
+
+Result
+
+All five ISBN validation test cases passed successfully.
+
+Valid 13-digit ISBN: Passed.
+Empty ISBN: Correctly rejected.
+Short ISBN: Correctly rejected.
+ISBN containing a letter: Correctly rejected.
+ISBN containing a symbol: Correctly rejected.
+Conclusion
+
+Task 4 — ISBN Validation Tests is PASS.
+
+The test results confirm that the ISBN validation function correctly accepts a valid 13-digit numeric ISBN and rejects the tested invalid equivalence classes.

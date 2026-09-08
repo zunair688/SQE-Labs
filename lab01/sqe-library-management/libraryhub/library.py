@@ -31,3 +31,10 @@ class Library:
             raise ValueError("Member cannot borrow more than 5 books")
 
         self.loans[member_id].append(isbn)
+
+
+def validate_isbn(isbn):
+    if not isinstance(isbn, str):
+        return False
+
+    return len(isbn) == 13 and isbn.isdigit()
