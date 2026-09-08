@@ -187,7 +187,7 @@ of existing books, and then attempts to borrow one more book.
 
 Test Execution
 
-The following command was used:
+## The following command was used:
 ``` text
 
 python -m pytest tests/test_borrow_limit.py
@@ -203,7 +203,7 @@ tests\test_borrow_limit.py ..                                                   
 ================================================= 2 passed in 0.02s ==================================================
 ```
 
-##Result
+## Result
 
 Both representative test cases passed successfully.
 
