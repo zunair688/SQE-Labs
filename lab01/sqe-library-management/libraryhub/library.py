@@ -15,3 +15,19 @@ def fine_tier(days_overdue):
         return "High"
 
     return "Severe"
+
+
+class Library:
+    MAX_BOOKS = 5
+
+    def __init__(self):
+        self.loans = {}
+
+    def borrow_book(self, member_id, isbn):
+        if member_id not in self.loans:
+            self.loans[member_id] = []
+
+        if len(self.loans[member_id]) >= self.MAX_BOOKS:
+            raise ValueError("Member cannot borrow more than 5 books")
+
+        self.loans[member_id].append(isbn)
