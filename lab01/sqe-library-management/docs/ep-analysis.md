@@ -107,3 +107,43 @@ digits.
 
 Therefore, Boundary Value Analysis (BVA) should be used together with
 Equivalence Partitioning to test important boundary values.
+
+
+## 3. Fine Tier — Worked Example
+
+The `fine_tier(days_overdue)` function partitions overdue days into the
+following equivalence classes:
+
+| Class ID | Range | Valid/Invalid | Representative | Expected Result |
+|---|---:|---|---:|---|
+| EC-F1 | < 0 | Invalid | -3 | ValueError |
+| EC-F2 | 0 | Valid | 0 | None |
+| EC-F3 | 1–7 | Valid | 4 | Low |
+| EC-F4 | 8–14 | Valid | 10 | Medium |
+| EC-F5 | 15–30 | Valid | 20 | High |
+| EC-F6 | 31+ | Valid | 45 | Severe |
+
+### Test Implementation
+
+The equivalence classes are implemented in
+`tests/test_fine_tier.py`. Five valid classes are tested using
+`pytest.mark.parametrize`, while the invalid negative-days class is
+tested separately using `pytest.raises(ValueError)`.
+
+### Test Execution Result
+
+Run:
+
+```text
+pytest tests/test_fine_tier.py
+
+Result:
+
+================================================ test session starts =================================================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0
+rootdir: E:\semester5th\SQE-Labs\lab01\sqe-library-management
+collected 6 items                                                                                                     
+
+tests\test_fine_tier.py ......                                                                                  [100%]
+
+================================================= 6 passed in 0.04s ==================================================
