@@ -142,8 +142,79 @@ Result:
 ================================================ test session starts =================================================
 platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0
 rootdir: E:\semester5th\SQE-Labs\lab01\sqe-library-management
+
+
 collected 6 items                                                                                                     
 
 tests\test_fine_tier.py ......                                                                                  [100%]
 
 ================================================= 6 passed in 0.04s ==================================================
+
+```
+## Task 3 — Borrow-Limit Tests
+Business Rule
+
+A library member can borrow a maximum of 5 books simultaneously.
+
+Therefore:
+
+0 to 5 books = valid
+More than 5 books = invalid
+Attempting to borrow a 6th book must raise a ValueError
+Test Design
+
+The borrow-limit behavior was tested using representative values from
+the equivalence classes.
+
+Test Case	Current Books	Action	Expected Result
+TC-BL1	3	Borrow one additional book	Successful; total becomes 4
+TC-BL2	5	Borrow one additional book	ValueError is raised
+
+The test was implemented using pytest.mark.parametrize so that the
+same test function could be executed for both representative cases.
+
+For the invalid case, pytest.raises(ValueError) was used to verify
+that the required exception is raised.
+
+Test Implementation
+
+The test was added in:
+
+tests/test_borrow_limit.py
+
+The implementation creates a Library object, adds the required number
+of existing books, and then attempts to borrow one more book.
+
+Test Execution
+
+The following command was used:
+``` text
+
+python -m pytest tests/test_borrow_limit.py
+
+Actual Test Result
+================================================ test session starts =================================================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0
+rootdir: E:\semester5th\SQE-Labs\lab01\sqe-library-management
+collected 2 items
+
+tests\test_borrow_limit.py ..                                                                                   [100%]
+
+================================================= 2 passed in 0.02s ==================================================
+```
+
+##Result
+
+Both representative test cases passed successfully.
+
+3 books → 4th book: Passed. The member was allowed to borrow another book.
+5 books → 6th book: Passed. The system correctly raised ValueError.
+
+Therefore, the maximum borrowing limit of 5 books is correctly enforced.
+
+## Conclusion
+
+## Task 3 — Borrow-Limit Tests is PASS.
+
+The test suite confirms both the valid and invalid equivalence classes
+for the maximum number of books a member can borrow.
