@@ -14,3 +14,18 @@ from libraryhub.library import validate_isbn
 )
 def test_validate_isbn_classes(isbn, expected):
     assert validate_isbn(isbn) == expected
+
+
+@pytest.mark.parametrize(
+    "length, expected",
+    [
+        (11, False),
+        (12, False),
+        (13, True),
+        (14, False),
+        (15, False),
+    ]
+)
+def test_validate_isbn_boundaries(length, expected):
+    isbn = "9" * length
+    assert validate_isbn(isbn) == expected
