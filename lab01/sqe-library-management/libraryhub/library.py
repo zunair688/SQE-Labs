@@ -1,3 +1,9 @@
+class Book:
+    def __init__(self, isbn, available_copies):
+        self.isbn = isbn
+        self.available_copies = available_copies
+
+
 def fine_tier(days_overdue):
     if days_overdue < 0:
         raise ValueError("Days overdue cannot be negative")
@@ -22,6 +28,7 @@ class Library:
 
     def __init__(self):
         self.loans = {}
+        self.catalog = []
 
     def borrow_book(self, member_id, isbn):
         if member_id not in self.loans:
@@ -31,6 +38,9 @@ class Library:
             raise ValueError("Member cannot borrow more than 5 books")
 
         self.loans[member_id].append(isbn)
+
+    def total_available_copies(self):
+        return sum(book.available_copies for book in self.catalog)
 
 
 def validate_isbn(isbn):
