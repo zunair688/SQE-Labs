@@ -23,6 +23,10 @@ def fine_tier(days_overdue):
     return "Severe"
 
 
+class LibraryIOError(Exception):
+    """Raised when the library catalog cannot be exported."""
+
+
 class Library:
     MAX_BOOKS = 5
 
@@ -41,6 +45,18 @@ class Library:
 
     def total_available_copies(self):
         return sum(book.available_copies for book in self.catalog)
+
+    def export_catalog(self, path):
+        try:
+            with open(path, "w", encoding="utf-8") as file:
+                for book in self.catalog:
+                    file.write(
+                        f"{book.isbn},{book.available_copies}\n"
+                    )
+        except OSError as exc:
+            raise LibraryIOError(
+                f"Unable to export catalog to {path}"
+            ) from exc
 
 
 def validate_isbn(isbn):
