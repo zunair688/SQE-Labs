@@ -59,7 +59,7 @@ public class Member {
     }
 
     // A student can borrow a maximum of 3 books.
-    if (borrowedBooks.size() >= 3) {
+    if (borrowedBooks.size() > 3) {
         throw new IllegalArgumentException(
             "Student cannot borrow more than 3 books"
         );
