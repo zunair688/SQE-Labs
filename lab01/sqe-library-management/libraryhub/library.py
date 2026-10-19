@@ -1,7 +1,8 @@
 class Book:
-    def __init__(self, isbn, available_copies):
+    def __init__(self, isbn, available_copies, title=None):
         self.isbn = isbn
         self.available_copies = available_copies
+        self.title = title if title is not None else isbn
 
 
 def fine_tier(days_overdue):
@@ -64,3 +65,21 @@ def validate_isbn(isbn):
         return False
 
     return len(isbn) == 13 and isbn.isdigit()
+
+
+
+def rank_books_by_popularity(library):
+    def borrow_count(book):
+        count = 0
+
+        for member_loans in library.loans.values():
+            for isbn in member_loans:
+                if isbn == book.isbn:
+                    count += 1
+
+        return count
+
+    return sorted(
+        library.catalog,
+        key=lambda book: (-borrow_count(book), book.title.casefold()),
+    )
