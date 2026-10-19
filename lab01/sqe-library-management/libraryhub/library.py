@@ -66,4 +66,4 @@ def validate_isbn(isbn):
     return len(isbn) == 13 and isbn.isdigit()
 
 def rank_books_by_popularity(library):
-    return []
+    return list(library.catalog)
