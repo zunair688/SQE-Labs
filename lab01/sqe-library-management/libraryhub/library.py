@@ -65,5 +65,21 @@ def validate_isbn(isbn):
 
     return len(isbn) == 13 and isbn.isdigit()
 
+
 def rank_books_by_popularity(library):
-    return list(library.catalog)
+    def borrow_count(book):
+        count = 0
+
+        for member_loans in library.loans.values():
+            for isbn in member_loans:
+                if isbn == book.isbn:
+                    count += 1
+
+        return count
+
+    return sorted(
+        library.catalog,
+        key=borrow_count,
+        reverse=True,
+    )
+
