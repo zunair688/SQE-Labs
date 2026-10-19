@@ -34,3 +34,19 @@ def test_rank_books_most_borrowed_book_comes_first():
     }
 
     assert rank_books_by_popularity(library) == [book_b, book_a]
+
+
+
+def test_rank_books_equal_popularity_sorted_alphabetically_by_title():
+    library = Library()
+
+    book_z = Book("9780000000003", 2, title="Zebra")
+    book_a = Book("9780000000004", 2, title="Apple")
+
+    library.catalog.extend([book_z, book_a])
+
+    library.loans = {
+        1: ["9780000000003", "9780000000004"],
+    }
+
+    assert rank_books_by_popularity(library) == [book_a, book_z]
