@@ -50,3 +50,23 @@ def test_rank_books_equal_popularity_sorted_alphabetically_by_title():
     }
 
     assert rank_books_by_popularity(library) == [book_a, book_z]
+
+
+
+def test_rank_books_unborrowed_books_come_after_borrowed_books():
+    library = Library()
+
+    book_z = Book("9780000000005", 2, title="Zebra")
+    book_a = Book("9780000000006", 2, title="Apple")
+    book_m = Book("9780000000007", 2, title="Moon")
+
+    library.catalog.extend([book_z, book_a, book_m])
+    library.loans = {
+        1: ["9780000000005", "9780000000005"],
+    }
+
+    assert rank_books_by_popularity(library) == [
+        book_z,
+        book_a,
+        book_m,
+    ]
