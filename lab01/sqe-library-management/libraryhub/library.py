@@ -5,6 +5,7 @@ class Book:
         self.title = title if title is not None else isbn
 
 
+
 def fine_tier(days_overdue):
     if days_overdue < 0:
         raise ValueError("Days overdue cannot be negative")
@@ -12,7 +13,7 @@ def fine_tier(days_overdue):
     if days_overdue == 0:
         return "None"
 
-    if 1 <= days_overdue <= 8:
+    if 1 <= days_overdue <= 7:
         return "Low"
 
     if 8 <= days_overdue <= 14:
