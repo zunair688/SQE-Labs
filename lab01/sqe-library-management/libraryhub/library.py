@@ -12,7 +12,7 @@ def fine_tier(days_overdue):
     if days_overdue == 0:
         return "None"
 
-    if 1 <= days_overdue <= 7:
+    if 1 <= days_overdue <= 8:
         return "Low"
 
     if 8 <= days_overdue <= 14:
