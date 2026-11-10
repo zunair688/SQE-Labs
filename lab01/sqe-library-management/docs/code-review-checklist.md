@@ -36,12 +36,20 @@ This checklist is used to review code changes in the SQE Library Management Syst
 
 ## Lessons Learned
 
-*To be completed after the code review.*
-
 ### Most Valuable Checklist Item
 
-To be added after identifying which checklist item caught the most important defect.
+The most valuable checklist item was **Correctness - Verify boundary conditions and edge cases**.
 
-### Additional Checklist Item for Next Time
+During the code review of the `fine_tier()` function, we identified an off-by-one error. The function incorrectly classified 8 overdue days as Low instead of Medium because the condition included 8 in both ranges.
 
-To be added after completing the review retrospective.
+The review helped identify this issue before approval. After correcting the condition and verifying the boundary tests, all tests passed successfully.
+
+### Checklist Item to Add for Next Time
+
+For future code reviews, I would add the following checkpoint:
+
+* **Boundary Value Testing:** Verify values immediately below, at, and above every important threshold. Ensure that each boundary has a corresponding automated test.
+
+### Overall Reflection
+
+This lab demonstrated that structured code reviews improve software quality by identifying logic errors, missing edge cases, and weaknesses in test coverage. Actionable inline comments and reviewer feedback also made the correction process more effective.
