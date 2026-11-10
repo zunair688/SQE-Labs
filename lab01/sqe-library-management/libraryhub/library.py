@@ -83,11 +83,3 @@ def rank_books_by_popularity(library):
         library.catalog,
         key=lambda book: (-borrow_count(book), book.title.casefold()),
     )
-
-
-def borrow_percentile(member, library):
-    x = sorted(library.loans.items(), key=lambda item: len(item[1]))
-    y = [item[0] for item in x]
-    z = y.index(member)
-
-    return z / len(y) * 100
