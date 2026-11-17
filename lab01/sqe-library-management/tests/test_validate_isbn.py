@@ -29,3 +29,11 @@ def test_validate_isbn_classes(isbn, expected):
 def test_validate_isbn_boundaries(length, expected):
     isbn = "9" * length
     assert validate_isbn(isbn) == expected
+
+
+
+def test_validate_isbn_rejects_none():
+    assert validate_isbn(None) is False
+
+def test_validate_isbn_rejects_integer():
+    assert validate_isbn(1234567890123) is False
