@@ -77,3 +77,10 @@ def test_populated_library_fixture_has_expected_books(populated_library):
     # Assert
     assert len(borrowed_books) == 3
     assert borrowed_books == ["ISBN-1", "ISBN-2", "ISBN-3"]
+
+
+
+def test_borrow_book_creates_loan_list_for_new_member(library):
+    library.borrow_book(999, "9780000000001")
+
+    assert library.loans[999] == ["9780000000001"]

@@ -26,3 +26,9 @@ replay_pid*
 __pycache__/
 *.pyc
 .pytest_cache/
+
+
+
+# Coverage reports
+.coverage
+htmlcov/

@@ -1,4 +1,4 @@
-
+import pytest
 from libraryhub.library import borrow_percentile, Library
 
 
@@ -14,6 +14,7 @@ def test_lowest_borrower_gets_zero_percentile():
     assert borrow_percentile(101, library) == 0.0
 
 
+
 def test_more_borrowed_books_gives_higher_percentile():
     library = Library()
 
@@ -23,4 +24,5 @@ def test_more_borrowed_books_gives_higher_percentile():
         103: ["ISBN-1", "ISBN-2", "ISBN-3"]
     }
 
-    assert borrow_percentile(103, library) > borrow_percentile(102, library)
+    assert borrow_percentile(102, library) == pytest.approx(100 / 3)
+    assert borrow_percentile(103, library) == pytest.approx(200 / 3)
